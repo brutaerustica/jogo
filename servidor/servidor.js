@@ -45,10 +45,5 @@ io.on("connection", function (socket) {
     console.log("-Lista de jogadores: %s", jogadores);
   });
 
-  socket.on("estadoDoJogador", function (estado) {
-    socket.broadcast.emit("desenharOutroJogador", estado);
-  });
-});
-
-app.use(express.static("./cliente"));
+app.use(express.static("../cliente"));
 server.listen(PORT, () => console.log(`Server listening on port ${PORT}!`));
