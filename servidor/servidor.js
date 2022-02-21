@@ -45,5 +45,12 @@ io.on("connection", function (socket) {
     console.log("-Lista de jogadores: %s", jogadores);
   });
 
-app.use(express.static("../cliente"));
+  socket.on("estadoDoJogador", function (estado) {
+    socket.broadcast.emit("desenharOutroJogador", estado);
+  });
+});
+
+// Dois tipos de cliente: com Phaser 3 e com Twine
+app.use("/", express.static("../cliente"));
+
 server.listen(PORT, () => console.log(`Server listening on port ${PORT}!`));
